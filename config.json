@@ -1,0 +1,25 @@
+{
+	"modes": [
+		"ECB",
+		"CBC",
+		"CTR",
+		"OFB",
+		"CFB"
+	],
+	"paddings": [
+		"Pkcs7",
+		"Pkcs5",
+		"AnsiX923",
+		"Iso10126",
+		"Iso97971",
+		"ZeroPadding:",
+		"NoPadding:"
+	],
+	"padding": "pkcs1",
+	"aes": {
+		"padding": "Pkcs7",
+		"mode": "ECB",
+		"cipher": "",
+		"iv": ""
+	}
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jsencrypt/3.0.0-rc.1/jsencrypt.min.js"></script>
+    <script src="https://cdn.bootcss.com/jsrsasign/8.0.12/jsrsasign-all-min.js"></script>
+    <script>
+        var src = "jsencrypt；默认支持的是：pkcs1 加密格式";
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(`-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDiTlpHUXFtb6EBTxLwt8+t7U8A
+AAYfIIe3eUpfcp7XQ12uceXfpqRJtKbMTkDHHtcdL2vY45vD4mxrl/lqyKE4zoFR
+GMJw7ZgFZYGCvzUugAE0xD09aDj7+Qy4SSh1GR8gr6ibrVn2bH/Dqdl+tP37m8Da
+oaOVhWwF7s9KfxuhBQIDAQAB
+-----END PUBLIC KEY-----`);
+        var encrypted = encrypt.encrypt(src);
+        console.log(encrypted)
+        var decrypt = new JSEncrypt();
+        decrypt.setPrivateKey(`-----BEGIN RSA PRIVATE KEY-----
+MIICXgIBAAKBgQDiTlpHUXFtb6EBTxLwt8+t7U8AAAYfIIe3eUpfcp7XQ12uceXf
+pqRJtKbMTkDHHtcdL2vY45vD4mxrl/lqyKE4zoFRGMJw7ZgFZYGCvzUugAE0xD09
+aDj7+Qy4SSh1GR8gr6ibrVn2bH/Dqdl+tP37m8DaoaOVhWwF7s9KfxuhBQIDAQAB
+AoGAUF75SvjOqsoJSTi3BkyRcjikZOCdS/K2oF9wHWPMq7CeFbUXqY06LX79+fMU
+qGL4jMHpsFZtXG0Oikun5depAaO53Fe2+9hWbfhKvGjQmOo4JO7pT9WQPyfoCZoN
+fkxno7YRIdKLi2ZhTip8RUu+ayMsT6EsFT+mY24ruD50rwUCQQDrBzRd1sAb/o8V
+jMRFBqWod5ROrEX8HVh0Y/7YU01wlb1Ok6Pi4V3kHsingsz+FiWRsZdb+nuPEAou
+XIhx+RB/AkEA9n/obIcZb9741CIj0Lij2KiqAXV7pEoiYMzqj5tJI+PrSQHJelyj
+HVGLAmZb7DWk0AY8HhQdyCr11tRV/vVMewJBAMnQFuxZIf8n2A+GH2ayLX96pvPj
+Q/kX7cOLteJlrYJ2YebeKgUAxhHDSUNlssafl8UCPNkzPfP7rvJebJ+JYdsCQQCl
+rp94ou30BbjWTQQpvJFUhTmPtXmfmby1t8ZJNCTbHMz+y1azCiURBcgbmtVaVUws
+DqTFytuhuU54UUxkDFiVAkEAuHx68my4KeLp0ynwhoc4EF/HyLm+oUd/OhTxyGXb
+rlNI2IspF8BaqhkcmLzevHXs2hAoCXeseon9xRK1gzdsSQ==
+-----END RSA PRIVATE KEY-----`);
+        // encrypted base64
+        var uncrypted = decrypt.decrypt(encrypted);
+        console.log(uncrypted)
+    </script>
+    <script>
+        var src = "jsrsasign；默认支持的是：pkcs8 加密格式";
+        var key = KEYUTIL.getKey(`-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4fNtXOmh0vwuuFPt9UUmYEFAP
+LzFv2f+WsZJnoLTQJlF+KAboCz7dDFTnwgj8Ezq0QzG0B61xpUP3j2ulhKCjuMAU
+ZrtP0D7Qtl/DUIJXu3idfmIU5iE537zF13UnHjWK9kJdNG2TMPKCWVuxyc53nnTM
+6Tsd0Zz0w30g/VnEnQIDAQAB
+-----END PUBLIC KEY-----`);
+        let hex = KJUR.crypto.Cipher.encrypt(src,key)
+        console.log(hextob64(hex));
+        var prv = KEYUTIL.getKey(`-----BEGIN PRIVATE KEY-----
+MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALh821c6aHS/C64U
++31RSZgQUA8vMW/Z/5axkmegtNAmUX4oBugLPt0MVOfCCPwTOrRDMbQHrXGlQ/eP
+a6WEoKO4wBRmu0/QPtC2X8NQgle7eJ1+YhTmITnfvMXXdSceNYr2Ql00bZMw8oJZ
+W7HJzneedMzpOx3RnPTDfSD9WcSdAgMBAAECgYBNgA34f83ftV3nvGLFiz9aRQgM
+yOuArFiFaoUxST6L7nzvfUshcY/v9j04urdhhYZ0sYGQumTvR9jch4BWIPgF+Dbp
+pleweTTK89NzqUAwyUzexlptLlioeEZIhwdhqJGhzyN/as2Z1jN9pgAISSDWjaxH
+zp4C0+0nDl8z6EgxwQJBAOXh7icEo9tywB/lsLwhSk5WeAvGuDwN417HcRykpGt1
+UHTTl+YbberOpXIqI9+xzvAURbscuFYczN+xZ1MZKG0CQQDNcqF/47AffAx9m82r
+niJ5SjQ4mayIP6qEbdL+HmFHjceyo1lkjb5lYV/lt9LX9bzmoDp1UeNSMkVVacCk
+z87xAkEAz7piLuX1f3bo/6naE5Ztg+6FGfcfQj02ic3le4GXhfcDlh4iM+/zWmwT
+et9zfU86dR2MiXGBbWcnBrhTavbf3QJAf0vak2Jhu3BiUOXbzs1hsONwbe2SAK3q
+GrnttPTf87T+mkoqVmqZITnvcGew5YzmqcN31T+S6Vgqq5yl97inEQJAcMPjDebh
+diOuIW7pKlF5Q632Rz2qBYayvKQFlABCYHQVMrGgQY9+TU08DhwkGhIDtD2z32gh
++Hhh6L7GNIFGDg==
+-----END PRIVATE KEY-----`);
+        // hex hex编码
+        var dec = KJUR.crypto.Cipher.decrypt(hex,prv);
+        console.log(dec);
+    </script>
+</head>
+<body>
+    <h1>jsencrypt；默认支持的是：pkcs1 加密格式</h1>
+    <h1>jsrsasign；默认支持的是：pkcs8 加密格式</h1>
+</body>
+</html>
