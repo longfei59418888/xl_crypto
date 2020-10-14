@@ -1,4 +1,4 @@
-##  全局安装xl_mock
+##  全局安装xl_crypto
 ```
 npm install -g xl_crypto
 xl_crypto -h   // 查看参数
@@ -12,7 +12,7 @@ xl_crypto md5 -[f]
 
 ##  aes 加密某个文件
 ```
-xl_crypto md5 -[f|i|m|p|e|o|s|f] --[output]
+xl_crypto aes -[f|i|m|p|e|o|s|f] --[output]
 ```
 选择某一给文件进行加密  
 选择加密类型    
@@ -21,7 +21,7 @@ xl_crypto md5 -[f|i|m|p|e|o|s|f] --[output]
 
 ##  rsa 加密某个文件
 ```
-xl_crypto md5 -[f] --[pub|pri|output]
+xl_crypto rsa -[f] --[pub|pri|output]
 ```
 选择某一给文件进行加密  
 选择公钥或者私钥文件  

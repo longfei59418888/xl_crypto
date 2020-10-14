@@ -1,6 +1,6 @@
 {
   "name": "xl_crypto",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "用于对文件加密",
   "main": "index.js",
   "scripts": {
